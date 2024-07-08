@@ -36,7 +36,7 @@ func NewCfg() *Config {
 	v.SetConfigName("config")
 	v.SetConfigType("toml")
 	v.AddConfigPath(cfgPath)
-	err := viper.ReadInConfig()
+	err := v.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("read config err: %s", err.Error()))
 	}
