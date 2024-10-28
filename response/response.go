@@ -1,5 +1,11 @@
 package response
 
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 const (
 	SUCCESS_CODE = 1000 + iota
 	ERROR_CODE
@@ -28,4 +34,9 @@ func Success(data interface{}) Resposne {
 
 func Error(code int, msg string) Resposne {
 	return NewResponse(code, msg, nil)
+}
+
+func GinResponse(c *gin.Context, res Resposne) {
+	c.JSON(http.StatusOK, res)
+    return
 }
