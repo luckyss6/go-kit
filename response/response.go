@@ -22,10 +22,10 @@ func NewResponse(code int, msg string, data interface{}) Resposne {
 	return Resposne{Code: code, Msg: msg, Data: data}
 }
 
-func (r *Resposne) Success(data interface{}) {
-	*r = NewResponse(SUCCESS_CODE, MessageMap[SUCCESS_CODE], data)
+func Success(data interface{}) Resposne {
+	return NewResponse(SUCCESS_CODE, MessageMap[SUCCESS_CODE], data)
 }
 
-func (r *Resposne) Error(code int, msg string) {
-	*r = NewResponse(code, msg, nil)
+func Error(code int, msg string) Resposne {
+	return NewResponse(code, msg, nil)
 }
