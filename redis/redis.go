@@ -8,14 +8,14 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func NewRedis(cfg *config.Config) *redis.Client {
+func New(cfg *config.Config) *redis.Client {
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     cfg.Redis.Addr,
-		Password: cfg.Redis.Password, // no password set
-		DB:       cfg.Redis.DB,       // use default DB
+		Password: cfg.Redis.Password,
+		DB:       cfg.Redis.DB,
 	})
 
-	err := rdb.Ping(context.Background()).Err()
+	err := rdb.Ping(context.TODO()).Err()
 	if err != nil {
 		panic(fmt.Errorf("connect redis err: %s", err.Error()))
 	}

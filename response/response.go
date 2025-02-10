@@ -1,42 +1,31 @@
 package response
 
-import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-)
-
 const (
-	SUCCESS_CODE = 1000 + iota
-	ERROR_CODE
-	DATABASE_ERROR
+	SuccessCode = 1000 + iota
+	ErrorCode
+	DatabaseError
 )
 
 var MessageMap = map[int]string{
-	SUCCESS_CODE:   "success",
-	ERROR_CODE:     "error",
-	DATABASE_ERROR: "database error",
+	SuccessCode:   "success",
+	ErrorCode:     "error",
+	DatabaseError: "database error",
 }
 
 type Resposne struct {
-	Code int         `json:"code"`
-	Msg  string      `json:"msg"`
-	Data interface{} `json:"data"`
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+	Data any    `json:"data"`
 }
 
-func NewResponse(code int, msg string, data interface{}) Resposne {
+func NewResponse(code int, msg string, data any) Resposne {
 	return Resposne{Code: code, Msg: msg, Data: data}
 }
 
-func Success(data interface{}) Resposne {
-	return NewResponse(SUCCESS_CODE, MessageMap[SUCCESS_CODE], data)
+func Success(data any) Resposne {
+	return NewResponse(SuccessCode, MessageMap[SuccessCode], data)
 }
 
 func Error(code int, msg string) Resposne {
 	return NewResponse(code, msg, nil)
-}
-
-func GinResponse(c *gin.Context, res Resposne) {
-	c.JSON(http.StatusOK, res)
-    return
 }

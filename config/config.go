@@ -9,41 +9,41 @@ import (
 )
 
 type Config struct {
-	Mysql `toml:"mysql"`
-	Redis `toml:"redis"`
+	Redis    Redis    `yaml:"redis"`
+	Postgres Postgres `yaml:"postgres"`
 }
-type Mysql struct {
-	User     string `toml:"user"`
-	Password string `toml:"password"`
-	Host     string `toml:"host"`
-	Port     int    `toml:"port"`
-	DB       string `toml:"db"`
+
+type Postgres struct {
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	User     string `yaml:"user"`
+	Password string `yaml:"password"`
+	DBname   string `yaml:"dbname"`
 }
 
 type Redis struct {
-	Addr     string `toml:"addr"`
-	Password string `toml:"password"`
-	DB       int    `toml:"db"`
+	Addr     string `yaml:"addr"`
+	Password string `yaml:"password"`
+	DB       int    `yaml:"db"`
 }
 
-func NewCfg() *Config {
+var cfg = &Config{}
+
+func New() *Config {
 	cfgPath := os.Getenv("ENV_PATH")
 	if strings.Compare(cfgPath, "") == 0 {
-		cfgPath = "./"
+		cfgPath = "."
 	}
 
-	v := viper.New()
-	v.SetConfigName("config")
-	v.SetConfigType("toml")
-	v.AddConfigPath(cfgPath)
-	err := v.ReadInConfig()
+	viper.SetConfigName("config")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath(cfgPath)
+	err := viper.ReadInConfig()
 	if err != nil {
 		panic(fmt.Errorf("read config err: %s", err.Error()))
 	}
 
-	cfg := new(Config)
-
-	err = v.Unmarshal(cfg)
+	err = viper.Unmarshal(cfg)
 	if err != nil {
 		panic(fmt.Errorf("unmarshal cfg err: %s", err.Error()))
 	}
