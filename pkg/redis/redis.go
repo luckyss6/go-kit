@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/luckyss6/go-kit/config"
+	"github.com/luckyss6/go-kit/pkg/config"
 	"github.com/redis/go-redis/v9"
 )
 

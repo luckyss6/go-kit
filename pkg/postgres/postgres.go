@@ -3,7 +3,7 @@ package postgres
 import (
 	"fmt"
 
-	"github.com/luckyss6/go-kit/config"
+	"github.com/luckyss6/go-kit/pkg/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

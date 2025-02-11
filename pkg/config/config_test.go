@@ -4,11 +4,14 @@ import (
 	"os"
 	"testing"
 
-	"github.com/luckyss6/go-kit/config"
+	"github.com/luckyss6/go-kit/pkg/config"
 )
 
+func TestMain(m *testing.M) {
+	os.Setenv("ENV_PATH", "../../")
+	os.Exit(m.Run())
+}
 func TestReadConfig(t *testing.T) {
-	os.Setenv("ENV_PATH", "../")
 	cfg := config.New()
 
 	if cfg == nil {
@@ -18,7 +21,6 @@ func TestReadConfig(t *testing.T) {
 }
 
 func TestReadPostgres(t *testing.T) {
-	os.Setenv("ENV_PATH", "../")
 	cfg := config.New()
 
 	if cfg.Postgres.Host == "" {
