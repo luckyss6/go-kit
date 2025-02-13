@@ -17,8 +17,8 @@ type Config struct {
 }
 
 type Binance struct {
-	ApiKey    string `yaml:"api_key"`
-	SecretKey string `yaml:"secret_key"`
+	ApiKey    string `mapstructure:"api_key"`
+	SecretKey string `mapstructure:"secret_key"`
 }
 
 type Mysql struct {
