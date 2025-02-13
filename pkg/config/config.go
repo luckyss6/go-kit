@@ -9,6 +9,7 @@ import (
 )
 
 type Config struct {
+	Debug    bool     `json:"debug"`
 	Redis    Redis    `yaml:"redis"`
 	Postgres Postgres `yaml:"postgres"`
 	Mysql    Mysql    `yaml:"mysql"`
@@ -16,8 +17,8 @@ type Config struct {
 }
 
 type Binance struct {
-	ApiKey string `yaml:"api_key"`
-	Secret string `yaml:"secret_key"`
+	ApiKey    string `yaml:"api_key"`
+	SecretKey string `yaml:"secret_key"`
 }
 
 type Mysql struct {
