@@ -9,3 +9,9 @@ redis:
   port: 6379
   password: "123"
   db: 1
+mysql:
+  host: localhost
+  port: 3306
+  username: root
+  password: root
+  dbname: mysql
