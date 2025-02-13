@@ -12,6 +12,12 @@ type Config struct {
 	Redis    Redis    `yaml:"redis"`
 	Postgres Postgres `yaml:"postgres"`
 	Mysql    Mysql    `yaml:"mysql"`
+	Binance  Binance  `yaml:"binance"`
+}
+
+type Binance struct {
+	ApiKey string `yaml:"api_key"`
+	Secret string `yaml:"secret_key"`
 }
 
 type Mysql struct {
