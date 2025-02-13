@@ -11,6 +11,15 @@ import (
 type Config struct {
 	Redis    Redis    `yaml:"redis"`
 	Postgres Postgres `yaml:"postgres"`
+	Mysql    Mysql    `yaml:"mysql"`
+}
+
+type Mysql struct {
+	Username string `yaml:"username"`
+	Password string `yaml:"password"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	DBname   string `yaml:"dbname"`
 }
 
 type Postgres struct {
